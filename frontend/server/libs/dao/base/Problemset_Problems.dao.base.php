@@ -181,7 +181,8 @@ abstract class ProblemsetProblemsDAOBase extends DAO {
         $params = [
             $Problemset_Problems->points,
             $Problemset_Problems->order,
-            $Problemset_Problems->problemset_id,$Problemset_Problems->problem_id,
+            $Problemset_Problems->problemset_id,
+            $Problemset_Problems->problem_id,
         ];
         global $conn;
         $conn->Execute($sql, $params);
