@@ -48,8 +48,9 @@ abstract class ProblemsetProblemsDAOBase {
      * @param ProblemsetProblems [$Problemset_Problems] El objeto de tipo ProblemsetProblems a actualizar.
      */
     final public static function update(ProblemsetProblems $Problemset_Problems) {
-        $sql = 'UPDATE `Problemset_Problems` SET `points` = ?, `order` = ? WHERE `problemset_id` = ? AND `problem_id` = ?;';
+        $sql = 'UPDATE `Problemset_Problems` SET `version` = ?, `points` = ?, `order` = ? WHERE `problemset_id` = ? AND `problem_id` = ?;';
         $params = [
+            $Problemset_Problems->version,
             $Problemset_Problems->points,
             $Problemset_Problems->order,
             $Problemset_Problems->problemset_id,
@@ -73,7 +74,7 @@ abstract class ProblemsetProblemsDAOBase {
         if (is_null($problemset_id) || is_null($problem_id)) {
             return null;
         }
-        $sql = 'SELECT `Problemset_Problems`.`problemset_id`, `Problemset_Problems`.`problem_id`, `Problemset_Problems`.`points`, `Problemset_Problems`.`order` FROM Problemset_Problems WHERE (problemset_id = ? AND problem_id = ?) LIMIT 1;';
+        $sql = 'SELECT `Problemset_Problems`.`problemset_id`, `Problemset_Problems`.`problem_id`, `Problemset_Problems`.`version`, `Problemset_Problems`.`points`, `Problemset_Problems`.`order` FROM Problemset_Problems WHERE (problemset_id = ? AND problem_id = ?) LIMIT 1;';
         $params = [$problemset_id, $problem_id];
         global $conn;
         $rs = $conn->GetRow($sql, $params);
@@ -128,7 +129,7 @@ abstract class ProblemsetProblemsDAOBase {
      * @return Array Un arreglo que contiene objetos del tipo {@link ProblemsetProblems}.
      */
     final public static function getAll($pagina = null, $filasPorPagina = null, $orden = null, $tipoDeOrden = 'ASC') {
-        $sql = 'SELECT `Problemset_Problems`.`problemset_id`, `Problemset_Problems`.`problem_id`, `Problemset_Problems`.`points`, `Problemset_Problems`.`order` from Problemset_Problems';
+        $sql = 'SELECT `Problemset_Problems`.`problemset_id`, `Problemset_Problems`.`problem_id`, `Problemset_Problems`.`version`, `Problemset_Problems`.`points`, `Problemset_Problems`.`order` from Problemset_Problems';
         global $conn;
         if (!is_null($orden)) {
             $sql .= ' ORDER BY `' . mysqli_real_escape_string($conn->_connectionID, $orden) . '` ' . ($tipoDeOrden == 'DESC' ? 'DESC' : 'ASC');
@@ -161,10 +162,11 @@ abstract class ProblemsetProblemsDAOBase {
         if (is_null($Problemset_Problems->order)) {
             $Problemset_Problems->order = '1';
         }
-        $sql = 'INSERT INTO Problemset_Problems (`problemset_id`, `problem_id`, `points`, `order`) VALUES (?, ?, ?, ?);';
+        $sql = 'INSERT INTO Problemset_Problems (`problemset_id`, `problem_id`, `version`, `points`, `order`) VALUES (?, ?, ?, ?, ?);';
         $params = [
             $Problemset_Problems->problemset_id,
             $Problemset_Problems->problem_id,
+            $Problemset_Problems->version,
             $Problemset_Problems->points,
             $Problemset_Problems->order,
         ];
