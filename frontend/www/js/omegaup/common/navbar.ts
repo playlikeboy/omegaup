@@ -42,7 +42,6 @@ OmegaUp.on('ready', () => {
       isMainUserIdentity: payload.isMainUserIdentity,
       lockDownImage: payload.lockDownImage,
       navbarSection: payload.navbarSection,
-      notifications: <types.Notification[]>[],
       graderInfo: <types.GraderStatus | null>null,
       graderQueueLength: -1,
       errorMessage: <string | null>null,
@@ -56,12 +55,6 @@ OmegaUp.on('ready', () => {
   });
 
   if (payload.isAdmin) {
-    api.Notification.myList()
-      .then(data => {
-        commonNavbar.notifications = data.notifications;
-      })
-      .catch(UI.apiError);
-
     const updateGraderStatus = () => {
       api.Grader.status()
         .then(stats => {
