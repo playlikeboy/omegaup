@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{#locale#}" class="h-100">
-  {include file='head_v2.tpl' htmlTitle="{#omegaupTitleIndex#}" inline}
+  {include file='head_v2.tpl' htmlTitle="{#navSchoolRanking#}" inline}
   <body class="d-flex flex-column h-100 pt-5">
     {include file='navbar_v2.tpl' headerPayload=$headerPayload inline}
 	  <main role="main">
