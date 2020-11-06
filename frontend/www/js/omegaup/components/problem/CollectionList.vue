@@ -86,8 +86,6 @@ export default class CollectionList extends Vue {
 
   get title(): string {
     switch (this.level) {
-      case 'author':
-        return T.omegaupTitleCollectionsByAuthor;
       case 'problemLevelBasicKarel':
         return T.problemLevelBasicKarel;
       case 'problemLevelBasicIntroductionToProgramming':
