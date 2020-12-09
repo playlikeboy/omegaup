@@ -17,7 +17,7 @@
         </button>
       </form>
     </div>
-    <table class="table table-striped">
+    <table class="table table-striped" data-table-members>
       <thead>
         <tr>
           <th>{{ T.wordsUser }}</th>
@@ -44,7 +44,7 @@
         </tr>
       </tbody>
     </table>
-    <table class="table table-striped">
+    <table class="table table-striped" data-table-identities>
       <thead>
         <tr>
           <th>{{ T.wordsIdentity }}</th>
@@ -132,7 +132,7 @@ interface EditMemberComponent {
     'omegaup-identity-change-password': identity_ChangePassword,
   },
 })
-export default class UserProfile extends Vue {
+export default class Members extends Vue {
   @Prop() identities!: omegaup.Identity[];
   @Prop() identitiesCsv!: omegaup.Identity[];
   @Prop() groupAlias!: string;
