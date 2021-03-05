@@ -149,7 +149,7 @@ describe('ContestPractice.vue', () => {
     });
 
     expect(wrapper.find('.clock').text()).toBe('∞');
-    expect(wrapper.find('.socket-status').text()).toBe('✗');
+    expect(wrapper.find('.socket-status-error').text()).toBe('✗');
     expect(wrapper.find('a[data-problem=problemOmegaUp]').text()).toBe(
       'A. hello problem omegaUp',
     );
